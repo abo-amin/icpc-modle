@@ -77,42 +77,15 @@
             color: gray;
         }
     </style>
-
-    <!-- منع الرجوع إلى الصفحة السابقة -->
-    <script>
-        // إزالة التوجيه المتكرر مؤقتًا
-        window.onpopstate = function () {
-            window.history.pushState( window.location.href);
-
-        };
-
-        // إيقاف التعديل بعد التقدم
-        function disableOptions() {
-            const radioButtons = document.querySelectorAll('input[type="radio"]');
-            radioButtons.forEach(button => {
-                button.disabled = true;
-            });
-        }
-
-        // تعطيل جميع المدخلات بعد انتهاء الوقت
-        function disableInputs() {
-            const inputs = document.querySelectorAll('input');
-            inputs.forEach(input => {
-                input.disabled = true;
-            });
-            document.querySelector('.btn-next').disabled = true; // تعطيل زر "التالي"
-        }
-    </script>
-
 </head>
 <body>
     <div class="container mt-5">
         <div class="exam-container">
             <h3 class="text-center mb-3">الامتحان</h3>
 
-            <div class="timer" id="timer">الوقت المتبقي: <span id="time-left"></span> ثانية</div>
+            <div class="timer" id="timer">الوقت المتبقي: <span id="time-left">@Model.TimerSeconds</span> ثانية</div>
 
-            <form method="post" asp-action="Exam">
+            <form id="examForm" method="post" asp-action="Exam">
                 <input type="hidden" name="questionNumber" value="@Model.QuestionNumber">
 
                 <p class="question-text">@Model.QuestionText</p>
@@ -134,7 +107,7 @@
                     }
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-next" onclick="disableOptions()">التالي</button>
+                <button type="button" class="btn btn-primary btn-next" onclick="nextQuestion()">التالي</button>
             </form>
 
             <p class="footer-text">برمجة بواسطة تيم ICPC ANU Assiut</p>
@@ -142,7 +115,7 @@
     </div>
 
     <script>
-        let timeLeft = @Model.TimerSeconds; // الزمن المحدد لكل سؤال
+        let timeLeft = @Model.TimerSeconds;
         let timerElement = document.getElementById("time-left");
 
         function updateTimer() {
@@ -150,12 +123,14 @@
                 timeLeft--;
                 timerElement.textContent = timeLeft;
             } else {
-                document.forms[0].submit(); // إرسال الإجابة تلقائيًا عند انتهاء الوقت
-                disableInputs(); // تعطيل المدخلات بعد انتهاء الوقت
+                nextQuestion();
             }
         }
 
-        timerElement.textContent = timeLeft;
+        function nextQuestion() {
+            document.getElementById("examForm").submit();
+        }
+
         setInterval(updateTimer, 1000);
     </script>
 </body>

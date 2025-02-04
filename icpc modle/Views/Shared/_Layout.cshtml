@@ -1,26 +1,31 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>@ViewBag.Title - امتحان</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-    <style>
-        body { padding-top: 20px; }
-        footer {
-            margin-top: 40px;
-            text-align: center;
-            font-size: 0.9em;
-            color: #777;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        @RenderBody()
-    </div>
-    <footer>
-        Developed By ICPC ANU Assiut
-    </footer>
-    @RenderSection("Scripts", required: false)
-</body>
+﻿
+<!DOCTYPE html>
+ <html lang="ar">
+ <head>
+     <meta charset="utf-8"> 
+     <meta name="viewport" content="width=device-width, initial-scale=1"> 
+     <title>@ViewData["Title"]</title> 
+     <link rel="stylesheet" href="~/css/site.css"> 
+ </head> 
+ <body> 
+     <header> 
+         <nav> 
+             <ul> 
+                 <li><a asp-controller="Home" asp-action="Index">الرئيسية</a></li> 
+                 @if (Context.Session.GetString("UserEmail") != null) 
+                 { 
+                     <li><a asp-controller="Auth" asp-action="Logout">تسجيل الخروج</a></li> 
+                 } 
+                 else 
+                 { 
+                    <li><a asp-controller="Auth" asp-action="Login">تسجيل الدخول</a></li> 
+                } 
+             </ul> 
+         </nav> 
+    </header> 
+
+    <main> 
+         @RenderBody() 
+   </main> 
+ </body> 
 </html>
