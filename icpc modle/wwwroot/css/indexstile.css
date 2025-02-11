@@ -1,0 +1,31 @@
+﻿@@keyframes floating-animation {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.floating {
+    animation: floating-animation 6s ease-in-out infinite;
+}
+
+@@keyframes spinning-animation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.spinning {
+    animation: spinning-animation 20s linear infinite;
+}

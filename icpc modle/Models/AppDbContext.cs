@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.EntityFrameworkCore;
 
 namespace icpc_modle.Models
 {
@@ -8,6 +9,8 @@ namespace icpc_modle.Models
 
         public DbSet<Question> Questions { get; set; }
         public DbSet<AllowedEmail> AllowedEmails { get; set; }
+
+        public DbSet<UserAnswer> UserAnswers { get; set; }
         public DbSet<ExamResult> ExamResults { get; set; }
     }
 }

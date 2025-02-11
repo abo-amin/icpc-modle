@@ -9,5 +9,7 @@ namespace icpc_modle.Models
         public string Email { get; set; }
         public int CorrectAnswers { get; set; }
         public int TotalQuestions { get; set; }
+        public double Percentages { get; set; }
+        public string Status { get; set; }
     }
 }

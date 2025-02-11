@@ -5,20 +5,20 @@
      <meta charset="utf-8"> 
      <meta name="viewport" content="width=device-width, initial-scale=1"> 
      <title>@ViewData["Title"]</title> 
-     <link rel="stylesheet" href="~/css/site.css"> 
- </head> 
+      <link rel="stylesheet" href="~/css/site.css">  
+ </head>  
  <body> 
      <header> 
          <nav> 
              <ul> 
-                 <li><a asp-controller="Home" asp-action="Index">الرئيسية</a></li> 
+                 
                  @if (Context.Session.GetString("UserEmail") != null) 
                  { 
-                     <li><a asp-controller="Auth" asp-action="Logout">تسجيل الخروج</a></li> 
+                     @* <li><a asp-controller="Auth" asp-action="Logout">logout</a></li>  *@
                  } 
                  else 
-                 { 
-                    <li><a asp-controller="Auth" asp-action="Login">تسجيل الدخول</a></li> 
+                 @* { <li><a asp-controller="Home" asp-action="Index">Home</a></li>  *@
+                    @* <li><a asp-controller="Auth" asp-action="Login">login</a></li>  *@
                 } 
              </ul> 
          </nav> 
